@@ -10,6 +10,7 @@ impl Guess {
         self.num1 * self.num2
     }
 }
+
 fn get_input(prompt: &str) -> i32 {
     let mut line = String::new();
     println!("{}", prompt);
@@ -25,9 +26,10 @@ fn get_input(prompt: &str) -> i32 {
     int_value
 }
 
-fn make_random() -> Guess {
+fn make_random(start: i32, stop: i32) -> Guess {
+	// Vi borde kasta om num1 och num2 ibland för mera random 
     let result = Guess {
-        num1: rand::thread_rng().gen_range(0..9),
+        num1: rand::thread_rng().gen_range(start..stop+1),
         num2: rand::thread_rng().gen_range(0..9),
     };
     result
@@ -35,8 +37,11 @@ fn make_random() -> Guess {
 
 fn main() {
     println!("welcome to MathQuest v 1.0");
+        let start = get_input("Från tabell");
+        let stop = get_input("Till tabell");
+        println!("Från tabell {} till tabell {}", start, stop);
     loop {
-        let test = make_random();
+        let test = make_random(start,stop);
         println!("------------------------------------------------\nFråga:");
         println!("{} x {} = ?", test.num1, test.num2);
         let g = get_input("Ge mig ett svar");
