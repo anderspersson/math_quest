@@ -42,19 +42,21 @@ fn main() {
         println!("Från tabell {} till tabell {}", start, stop);
     loop {
         let test = make_random(start,stop);
-        println!("------------------------------------------------\nFråga:");
-        println!("{} x {} = ?", test.num1, test.num2);
-        let g = get_input("Ge mig ett svar");
+        print!("------------------------------------------------\nFråga:\t");
+        print!("{} x {} = ", test.num1, test.num2);
+        let g = get_input("? ");
         let correct: i32 = test.get_answer();
+
         if g == -1 {
             println!("MathQuest v 1.0\nHej då!!");
             break;
         }
-        println!("{} x {} = {}", test.num1, test.num2, correct);
+
         if g == correct {
-            println!("RÄTT !!!\n");
+        	println!("RÄTT {} x {} = {}", test.num1, test.num2, correct);
         } else {
-            println!("FEL !!!\n");
+        	println!("FEL {} x {} inte {}", test.num1, test.num2, g);
+        	println!("    {} x {} = {}", test.num1, test.num2, correct);
         }
     }
 }
